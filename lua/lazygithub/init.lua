@@ -3,6 +3,8 @@ local M = {}
 M.setup = function()
 	-- Register command
 	vim.cmd("command! Lazygithub lua require('lazygithub').open()")
+	-- Pressing <leader>lg will open Lazygithub
+	vim.keymap.set("n", "<leader>lg", "<cmd>Lazygithub<CR>", { desc = "Open Lazygithub" })
 end
 
 M.open = function()
