@@ -2,6 +2,8 @@ local M = {}
 
 M.default_options = {
 	keymap = "<leader>lg",
+	cmd = "gh lazy",
+	border = "single",
 }
 
 M.options = M.default_options
@@ -25,9 +27,9 @@ M.open = function()
 		lazygithub = nil
 	else
 		lazygithub = Terminal:new({
-			cmd = "gh lazy",
+			cmd = M.options.cmd,
 			direction = "float",
-			float_opts = { border = "single" },
+			float_opts = { border = M.options.border },
 			on_open = function(term)
 				vim.cmd("startinsert!")
 				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
