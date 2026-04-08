@@ -42,15 +42,27 @@
 
 ### 1. Install `lazy-github`
 
-Since `lazygithub.nvim` invokes `gh lazy`, you must install `lazy-github` as a GitHub CLI extension:
+You can install the `lazy-github` CLI in several ways:
 
-```bash
-gh extension install gizmo385/gh-lazy
-```
+- **Via GitHub CLI (Recommended)**:
+
+  ```bash
+  gh extension install gizmo385/gh-lazy
+  ```
+
+- **Via uv**:
+
+  ```bash
+  uvx lazy-github
+  ```
+
+- **Via pip**:
+
+  ```bash
+  pip install lazy-github
+  ```
 
 ### 2. Install `lazygithub.nvim`
-
-Install the plugin using your favorite package manager.
 
 **[Lazy.nvim](https://github.com/folke/lazy.nvim)**
 
@@ -59,12 +71,20 @@ return {
   "georgesnoe/lazygithub.nvim",
   dependencies = { "akinsho/toggleterm.nvim" },
   event = "VeryLazy",
-  config = function()
-    require("lazygithub").setup({
-      keymap = "<leader>lg", -- optional: default is <leader>lg
-    })
-  end,
+  opts = {},
 }
+```
+
+## ⚙️ Customization
+
+You can configure the plugin by passing a table to the `setup` function.
+
+```lua
+require("lazygithub").setup({
+  keymap = "<leader>lg",    -- Keymap to open Lazygithub (default: <leader>lg)
+  cmd = "gh lazy",          -- Command to run lazy-github (default: gh lazy)
+  border = "single",        -- Border style: "single", "double", "shadow", or "curved" (default: single)
+})
 ```
 
 ## 🔌 Available commands
