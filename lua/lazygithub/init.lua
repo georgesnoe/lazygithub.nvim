@@ -1,10 +1,18 @@
 local M = {}
 
-M.setup = function()
+M.default_options = {
+	keymap = "<leader>lg",
+}
+
+M.options = M.default_options
+
+M.setup = function(options)
+	--- Clone options and replace empty ones with default ones
+	M.options = vim.tbl_deep_extend("keep", options or {}, M.default_options)
 	-- Register command
 	vim.cmd("command! Lazygithub lua require('lazygithub').open()")
 	-- Pressing <leader>lg will open Lazygithub
-	vim.keymap.set("n", "<leader>lg", "<cmd>Lazygithub<CR>", { desc = "Open Lazygithub" })
+	vim.keymap.set("n", M.options.keymap, "<cmd>Lazygithub<CR>", { desc = "Open Lazygithub" })
 end
 
 M.open = function()
