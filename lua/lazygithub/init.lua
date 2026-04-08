@@ -5,6 +5,7 @@ M.default_options = {
 }
 
 M.options = M.default_options
+local lazygithub = nil
 
 M.setup = function(options)
 	--- Clone options and replace empty ones with default ones
@@ -17,7 +18,6 @@ end
 
 M.open = function()
 	local Terminal = require("toggleterm.terminal").Terminal
-	local lazygithub = nil
 
 	-- Close Lazygithub if it's already open, open a new one if it's not
 	if lazygithub and lazygithub:is_open() then
